@@ -4,7 +4,7 @@
 
 LISTEN_ADDRESS = '0.0.0.0'      # Address where the application listens
 LISTEN_PORT = 8080              # Port where the application listens
-PLUGIN = 'abiquo'               # The plugin to load
+PLUGIN = 'tetrate'              # The plugin to load
 DEBUG = True                    # Print debut information
 THREADED = True                 # Use multiple threads to perform the Github API calls
 MAX_RETRIES = 5                 # Number of retries for failed requests

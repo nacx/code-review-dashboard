@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: code-review-dashboard-config
+data:
+  CLIENT_ID: changeme
+  CLIENT_SECRET: changeme
+  SECRET_KEY: changeme
