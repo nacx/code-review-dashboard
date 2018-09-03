@@ -1,5 +1,3 @@
-import re
-
 
 def load():
     return Tetrate()
@@ -12,7 +10,9 @@ class Tetrate:
             'headers': {'left': 'Need More Work', 'middle': 'CircleCI Happy', 'right': 'Approved!'},
             'template': 'tetrate.html',
         }
-        self.repos = self._repos()
+
+    def repos(self, github):
+        return github.list_org_repos('tetrateio') + github.list_org_repos('tetratelabs')
 
     def parse_pull(self, pull, data):
         data['obsolete'] = data['old'] >= 2
@@ -32,17 +32,3 @@ class Tetrate:
 
     def parse_comment(self, comment, summary):
         pass
-
-    def _repos(self):
-        return ["https://api.github.com/repos/tetrateio/tetrate",
-                "https://api.github.com/repos/tetrateio/tetrate-ui",
-                "https://api.github.com/repos/tetrateio/deployments-prod",
-                "https://api.github.com/repos/tetrateio/website",
-                "https://api.github.com/repos/tetrateio/ngac",
-                "https://api.github.com/repos/tetratelabs/liaison",
-                "https://api.github.com/repos/tetratelabs/mcc",
-                "https://api.github.com/repos/tetratelabs/envoy-extensions",
-                "https://api.github.com/repos/tetratelabs/istio-route53",
-                "https://api.github.com/repos/tetratelabs/mixer-lite",
-                "https://api.github.com/repos/tetratelabs/istio-tools"
-                ]

@@ -15,7 +15,6 @@ class Github:
         self.total_requests = 0
         self.remaining_rl = None
         self.plugin = plugin
-        self.plugin.github = self
 
     def user(self):
         if not self.credentials.user:
@@ -40,7 +39,7 @@ class Github:
         results = Queue.Queue()
 
         if config.THREADED:
-            for repo_url in self.plugin.repos:
+            for repo_url in self.plugin.repos(self):
                 try:
                     repo = self.get(repo_url)
                     t = threading.Thread(target=self._analyze_repo,

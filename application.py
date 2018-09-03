@@ -121,7 +121,6 @@ def logout():
 
 
 def __request_token(code):
-
     client_id = os.environ.get('CLIENT_ID') or config.CLIENT_ID
     client_secret = os.environ.get('CLIENT_SECRET') or config.CLIENT_SECRET
     uri = 'https://github.com/login/oauth/access_token?client_id=' +\
