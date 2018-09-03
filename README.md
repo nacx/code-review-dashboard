@@ -1,5 +1,4 @@
-Code review dashboard
-=====================
+# Code review dashboard
 
 A dashboard to see the status of all opened pull requests. It is configurable and extensible so you can customize the information that is shown for each pull request.
 
@@ -9,13 +8,11 @@ A dashboard to see the status of all opened pull requests. It is configurable an
 
 It also shows in red the pull requests that have been without activity in the configured days, and shows in green the pull requests where the current user has participated.
 
-Configuration
--------------
+## Configuration
 
 The dashboard is configured in the `config.py` file. Feel free to edit and adapt it to your needs.
 
-Running as a Docker container (recommended)
--------------------------------------------
+## Running as a Docker container (recommended)
 
 If you prefer to run the dashboard as a Docker container, you just have to build the image and
 run the container as follows:
@@ -30,8 +27,12 @@ run the container as follows:
         -e SECRET_KEY=<secret key> \
         tetrate/code-review-dashboard
 
-Running without Docker
-----------------------
+### Deploying to Kubernetes
+
+The `deployment` folder contains the Kubernetes deployment and service files. You just need to edit the `deployment/config.yml`
+and add the values for the client id and secret variables. Then you can just `kubectl apply` all files and you're done.
+
+## Running without Docker
 
 The dashboard uses [Flask](http://flask.pocoo.org/docs/) and [Requests](http://python-requests.org).
 You can install them using [Pip](http://www.pip-installer.org) as follows:
@@ -53,22 +54,3 @@ it into a virtualenv should be the same, once it has been activated:
 Once you have installed the requirements you can run the dashboard as follows:
 
     python application.py
-
-Deploying to Heroku
--------------------
-
-The application can also be deployed to Heroku. To deploy it you just have to create the application
-and deploy it as follows:
-
-    # Create and configure the Heroku application
-    heroku create <application name>
-
-    # Deploy the application
-    git push heroku master
-
-    # Set application ID and secret as heroku envs
-    heroku config:set CLIENT_ID=ID
-    heroku config:set CLIENT_SECRET=secret
-
-    # Set a flask application secret key
-    heroku config:set SECRET_KEY=secret-key
